@@ -1,39 +1,119 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import Header from "./Header"
-import { Link } from "react-router-dom"
+import {checkValidData} from "../utils/validate"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {auth} from "../utils/firebase"
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import {USER_AVATAR, MOVIE_BG} from "../utils/constant";
 
 const Login = () => {
 
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const dispatch = useDispatch();
 
-  const toggleSignInForm = ()=>{
 
-    setIsSignInForm(!isSignInForm);
+  const name = useRef(null);
+  const email = useRef(null);
+  const mobile = useRef(null);
+  const password = useRef(null);
 
+  const handleButtonClick = ()=>{
+       //form validation
+    const message = 
+          checkValidData(email.current.value, password.current.value);  
+    setErrorMessage(message);
+
+    if(message) return;  // if some error in email and password that error message contain
+                        // and it is true it return back.
+
+    if(!isSignInForm){
+      //sign up logic
+          createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        updateProfile(user, {
+          displayName: name.current.value, 
+          photoURL: USER_AVATAR,
+        }).then(() => {
+          // Profile updated!
+
+          const {uid, email, displayName, photoURL} = auth.currentUser;
+               dispatch(addUser({
+                        uid:uid, 
+                        email:email, 
+                        displayName:displayName, 
+                        photoURL:photoURL })
+                        );
+
+
+        }).catch((error) => {
+          setErrorMessage(errorMessage);
+        });
+        
+        
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorCode);
+        
+  });
+
+    } 
+    
+    else{
+      //signed in logic
+          signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        
+        const user = userCredential.user;
+
+        
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // setErrorMessage(errorCode+"-"+errorMessage);
+        setErrorMessage(errorCode)
+
+      });
+    }                     
   }
 
+  const toggleSignInForm = ()=>{
+    setIsSignInForm(!isSignInForm);
+  }
 
   return (
     <div>
       <Header />
       <div>
-        <img className="absolute" src="https://assets.nflxext.com/ffe/siteui/vlv3/16006346-87f9-4226-bc25-a1fb346a2b0c/9662d0fd-0547-4665-b887-771617268815/IN-en-20240115-popsignuptwoweeks-perspective_alpha_website_small.jpg"
+        <img className="absolute" src={MOVIE_BG} alt="bg"
         />
       </div>
-      <form className=" absolute w-3/12 my-36 mx-auto left-0 right-0  p-12 bg-black bg-opacity-85 text-white  ">
+      <form onSubmit={(e)=>e.preventDefault()} className=" absolute w-3/12 my-20 mx-auto left-0 right-0  p-12 bg-black bg-opacity-85 text-white  ">
 
         <h1 className="font-bold text-3xl  my-6 ">{isSignInForm ? "Sign In" : "Sign Up" }</h1>
-        {!isSignInForm && <input type="text" placeholder="Full Name" className="p-4  w-full my-2 rounded-md bg-[#333333] text-base outline-none"/>}
+        {!isSignInForm && <input ref={name} type="text" placeholder="Full Name" className="p-4  w-full my-2 rounded-md bg-[#333333] text-base outline-none"/>}
 
-        <input type="email" placeholder="Email Address" className="p-4  w-full my-2 rounded-md bg-[#333333] text-base outline-none"/>
+        <input ref={email} type="email" placeholder="Email Address" className="p-4  w-full my-2 rounded-md bg-[#333333] text-base outline-none"/>
 
-        {!isSignInForm && <input type="tel" placeholder="Mobile Number" className="p-4 text-base my-2 w-full rounded-md bg-[#333333] outline-none" />}
-        <input type="password" placeholder="Password" className="p-4 text-base my-2 w-full rounded-md bg-[#333333] outline-none" />
+        {!isSignInForm && <input ref={mobile} type="tel" placeholder="Mobile Number" className="p-4 text-base my-2 w-full rounded-md bg-[#333333] outline-none" />}
+        <input ref={password} type="password" placeholder="Password" className="p-4 text-base my-2 w-full rounded-md bg-[#333333] outline-none" />
 
-        <button className="p-4  my-6 font-semibold text-base rounded-md w-full bg-red-800">{isSignInForm ? "Sign In" : "Sign Up" }</button>
+      
+        <p className="text-red-700 text-center text-xl font-bold mt-5">{errorMessage}</p>
+
+        <button className="p-4  my-6 font-semibold text-base rounded-md w-full bg-red-800" onClick={handleButtonClick}>{isSignInForm ? "Sign In" : "Sign Up" }</button>
         <p onClick={toggleSignInForm}  className="text-gray-500 cursor-pointer">
+
+
           { isSignInForm ? "New to Netflix? Sign up now." : "Already registered? Sign In Now. "}</p>
-        <p className="text-xs mt-4">This page is protected by Google reCAPTCHA to ensure you're not a bot. <Link to="#" >Learn more.</Link> </p>
+        <p className="text-xs mt-4">This page is protected by Google reCAPTCHA to ensure you're not a bot. <button>Learn More</button> </p>
+
       </form>
       
     </div>
