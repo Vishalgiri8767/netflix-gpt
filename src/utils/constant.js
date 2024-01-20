@@ -6,3 +6,13 @@ export const MOVIE_BG =
 
 export const USER_AVATAR = 
     "https://www.svgrepo.com/download/295402/user-profile.svg"
+
+
+export const API_OPTIONS = {
+    method: 'GET',
+    headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZWZlMDRkZmIwODE2ODY3MDk2NDZlNmFkNjJkZWQzMSIsInN1YiI6IjY1YWI3YzQ4YWFlYzcxMDBhMWE0NDNlMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fKqX5B3UWSNuI4Ykl12THnj5Tc--vN7HpSUng-3szAY'
+    },
+    }; 
+

@@ -19,6 +19,10 @@
 - bugfix: if the user is not logged in Redirect /browse to login page and vice versa.
 - unsubscribed to onAuthStateChanged callback.
 - add hardcoded values to the constant files.
+- Registered TMDB app create an app and get access token.
+- get data from TMDB now playing list Api
+- 
+
 
 # features
 - login/sign up
