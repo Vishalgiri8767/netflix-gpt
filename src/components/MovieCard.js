@@ -7,8 +7,8 @@ const MovieCard = ({posterPath, movieName, avgRating}) => {
       < img className='rounded-lg h-52' alt='movie name' 
         src={IMG_CDN_URL + posterPath }
       />
-    <p className=' pr-4 pt-4 '>{movieName}</p>
-    <p className='font-serif '>IMDB:   {avgRating}</p>
+    <p className=' pr-4 pt-0 text-sm '>{movieName}</p>
+    <p className='font-serif text-xs'>IMDB:   {avgRating}</p>
     </div>
   )
 }
