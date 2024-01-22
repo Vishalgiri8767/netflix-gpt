@@ -10,9 +10,11 @@ const useNowPlayingMovies = ()=>{
   
   const getNowPlayMovies = async ()=>{
     const data = await fetch
+      // ('https://api.themoviedb.org/3/trending/all/day?language=en-US', API_OPTIONS) //todays trending
+
         ('https://api.themoviedb.org/3/movie/now_playing?page=1', API_OPTIONS);
+
     const json = await data.json();
-   // console.log(json.results);
 
     dispatch(addNowPlayingMovies(json.results));
   
