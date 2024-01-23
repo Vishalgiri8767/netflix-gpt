@@ -24,7 +24,7 @@ export const LANGUAGE_SUPPORTED =   [{identifier:"en", name:"English"},
                                     
                                     
                                 ];
-export const OPENAI_API_KEY = "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";                              
+export const OPENAI_API_KEY = "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";                              
 
 
 

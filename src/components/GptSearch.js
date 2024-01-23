@@ -7,7 +7,7 @@ import { MOVIE_BG } from '../utils/constant'
 const GptSearch = () => {
   return (
     <div>
-      <div className='absolute -z-20'>
+      <div className='fixed -z-20'>
         <img src={MOVIE_BG} />
       </div>
       <GptSearchBar />
