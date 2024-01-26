@@ -101,9 +101,9 @@ const Login = () => {
 
  
   return (
-    <div>
+    <div className="">
       <Header />
-      <div>
+      <div className="">
         <img className="absolute" src={MOVIE_BG} alt="bg"
         />
       </div>
