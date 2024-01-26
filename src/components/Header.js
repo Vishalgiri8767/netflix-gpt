@@ -77,14 +77,14 @@ const Header = () => {
           <img onClick={handleNetflixClick} 
             className='w-48 hover:cursor-pointer ' src={LOGO} alt='Netflix logo' 
           />
-          {user && 
+          {/* {user && 
           <div className='flex gap-5 text-md '>
             <Link to={"/"} className='font-semibold hover:text-gray-400 px-4 py-2 '>Home</Link>
             <Link to={ "/"} className='font-semibold hover:text-gray-400 px-4 py-2 '>TV Shows</Link>
             <Link to={"/movies"} className='font-semibold hover:text-gray-400 px-4 py-2 '>Movies</Link>
             <Link to={"/"} className='font-semibold hover:text-gray-400 px-4 py-2 '>Home</Link>
           </div>
-          }
+          } */}
         </div>
        { user && 
         <div className='flex'>
