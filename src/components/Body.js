@@ -2,6 +2,7 @@ import React from "react";
 import Login from "./Login";
 import Browse from "./Browse";
 import Home from "./Home";
+import Movies from "../pages/Movies";
 import { RouterProvider,createBrowserRouter } from "react-router-dom";
 
 
@@ -21,7 +22,15 @@ const Body = ()=>{
         {
             path: "/home",
             element: <Home />
-        }
+        },
+        // {
+        //     path: "/tvShows",
+        //     element: <TvShows />
+        // },
+        {
+            path: "/movies",
+            element: <Movies />
+        },
     ]);
 
 
