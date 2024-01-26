@@ -6,18 +6,29 @@ import {auth} from "../utils/firebase"
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import {USER_AVATAR, MOVIE_BG} from "../utils/constant";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
-
+  const navigate= useNavigate();
 
   const name = useRef(null);
   const email = useRef(null);
   const mobile = useRef(null);
   const password = useRef(null);
+
+  const [emailPhone, setEmailPhone] = useState("user01@demo.com");
+  const [passwor, setPasswor] = useState("Vishal@123")
+
+  const handleEmailPhone= (event)=>{
+    setEmailPhone(event.target.value);
+  };
+  const handlePassword = (event)=>{
+    setPasswor(event.target.value);
+  }
 
   const handleButtonClick = ()=>{
        //form validation
@@ -85,8 +96,9 @@ const Login = () => {
 
   const toggleSignInForm = ()=>{
     setIsSignInForm(!isSignInForm);
-  }
+  };
 
+ 
   return (
     <div>
       <Header />
@@ -99,10 +111,10 @@ const Login = () => {
         <h1 className="font-bold text-3xl  my-6 ">{isSignInForm ? "Sign In" : "Sign Up" }</h1>
         {!isSignInForm && <input ref={name} type="text" placeholder="Full Name" className="p-4  w-full my-2 rounded-md bg-[#333333] text-base outline-none"/>}
 
-        <input ref={email} type="email" placeholder="Email Address" className="p-4  w-full my-2 rounded-md bg-[#333333] text-base outline-none"/>
+        <input ref={email} type="email" placeholder="Email Address" onChange={handleEmailPhone} value={emailPhone}  className="p-4  w-full my-2 rounded-md bg-[#333333] text-base outline-none"/>
 
         {!isSignInForm && <input ref={mobile} type="tel" placeholder="Mobile Number" className="p-4 text-base my-2 w-full rounded-md bg-[#333333] outline-none" />}
-        <input ref={password} type="password" placeholder="Password" className="p-4 text-base my-2 w-full rounded-md bg-[#333333] outline-none" />
+        <input ref={password} type="password" onChange={handlePassword} value={passwor} placeholder="Password" className="p-4 text-base my-2 w-full rounded-md bg-[#333333] outline-none" />
 
       
         <p className="text-red-700 text-center text-xl font-bold mt-5">{errorMessage}</p>
@@ -115,7 +127,7 @@ const Login = () => {
         <p className="text-xs mt-4">This page is protected by Google reCAPTCHA to ensure you're not a bot. <button>Learn More</button> </p>
 
       </form>
-      
+
     </div>
   )
 }

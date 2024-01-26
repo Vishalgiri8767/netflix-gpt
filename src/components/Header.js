@@ -1,7 +1,7 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import React, { useEffect, useRef } from 'react'
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { LOGO } from '../utils/constant';
@@ -64,12 +64,21 @@ const Header = () => {
 
   return (
     
-    <div className='absolute w-screen z-10 py-2 px-8 bg-gradient-to-b from-black flex justify-between '>
-        <img 
-          className='w-48 ' src={LOGO} alt='Netflix logo' 
-        />
+    <div className='absolute w-screen bg-pink-800 z-10 py-2 px-8 bg-gradient-to-b from-black flex justify-between '>
+        <div className='flex items-center gap-10  '>
+          <img 
+            className='w-48 ' src={LOGO} alt='Netflix logo' 
+          />
+          <div className='flex gap-10 text-lg '>
+            <Link to={"/home"} className='bg-gray-500 px-4 py-2 rounded-lg'>Home</Link>
+            <Link to={"/home"} className='bg-gray-500 px-4 py-2 rounded-lg'>Home</Link>
+            <Link to={"/home"} className='bg-gray-500 px-4 py-2 rounded-lg'>Home</Link>
+            <Link to={"/home"} className='bg-gray-500 px-4 py-2 rounded-lg'>Home</Link>
+          </div>
+        </div>
        { user && 
         <div className='flex'>
+          
         {showGptSearch &&  (<select  onChange={handleLanguageChange} className='font-semibold text-lg text-white bg-black px-2 my-6 rounded-md ml-4  '>
             {
               LANGUAGE_SUPPORTED.map((lang)=>(
