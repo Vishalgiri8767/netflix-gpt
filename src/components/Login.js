@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import {USER_AVATAR, MOVIE_BG} from "../utils/constant";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 const Login = () => {
 
@@ -127,7 +128,7 @@ const Login = () => {
         <p className="text-xs mt-4">This page is protected by Google reCAPTCHA to ensure you're not a bot. <button>Learn More</button> </p>
 
       </form>
-
+      
     </div>
   )
 }
