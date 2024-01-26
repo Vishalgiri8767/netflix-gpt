@@ -61,20 +61,25 @@ const Header = () => {
       return ()=> unsubscribe();
   },[]);
     
+  const handleNetflixClick =()=>{
+    navigate("/browse");
 
+  }
   return (
     
-    <div className='absolute w-screen bg-pink-800 z-10 py-2 px-8 bg-gradient-to-b from-black flex justify-between '>
+    <div className='absolute w-screen   z-10 py-2 px-8 bg-gradient-to-b from-black flex justify-between '>
         <div className='flex items-center gap-10  '>
-          <img 
-            className='w-48 ' src={LOGO} alt='Netflix logo' 
+          <img onClick={handleNetflixClick} 
+            className='w-48 hover:cursor-pointer ' src={LOGO} alt='Netflix logo' 
           />
-          <div className='flex gap-10 text-lg '>
-            <Link to={"/home"} className='bg-gray-500 px-4 py-2 rounded-lg'>Home</Link>
-            <Link to={"/home"} className='bg-gray-500 px-4 py-2 rounded-lg'>Home</Link>
-            <Link to={"/home"} className='bg-gray-500 px-4 py-2 rounded-lg'>Home</Link>
-            <Link to={"/home"} className='bg-gray-500 px-4 py-2 rounded-lg'>Home</Link>
+          {user && 
+          <div className='flex gap-5 text-md '>
+            <Link to={"/home"} className='font-semibold hover:text-gray-400 px-4 py-2 '>Home</Link>
+            <Link to={"/home"} className='font-semibold hover:text-gray-400 px-4 py-2 '>Home</Link>
+            <Link to={"/home"} className='font-semibold hover:text-gray-400 px-4 py-2 '>Home</Link>
+            <Link to={"/home"} className='font-semibold hover:text-gray-400 px-4 py-2 '>Home</Link>
           </div>
+          }
         </div>
        { user && 
         <div className='flex'>

@@ -7,7 +7,7 @@ const MovieCard = ({posterPath, movieName, avgRating}) => {
 
 
   return (
-    <div className='w-44 h-60 bg-black pr-4 text-white'>
+    <div className='w-44 h-60 pr-4 text-white'>
       < img className='rounded-lg h-full w-full ' alt='movie name' 
         src={IMG_CDN_URL + posterPath }
       />  

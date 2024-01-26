@@ -1,3 +1,5 @@
+
+
 export const LOGO = 
     'https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png'
 
@@ -24,7 +26,7 @@ export const LANGUAGE_SUPPORTED =   [{identifier:"en", name:"English"},
                                     
                                     
                                 ];
-export const OPENAI_API_KEY = "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";                              
+export const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_KEY;                         
 
 
 
