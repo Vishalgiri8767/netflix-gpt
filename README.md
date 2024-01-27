@@ -14,7 +14,7 @@ NetflixGPT is a web application that leverages the power of OpenAI's GPT-3 to en
 
 - Firebase: Firebase is used for user authentication, ensuring secure access to personalized recommendations and conversation history.
 
-- OpenAI GPT-3: The heart of NetflixGPT is powered by OpenAI's GPT-3, which enables natural language understanding and conversation generation.
+- OpenAI GPT-3.5: The heart of NetflixGPT is powered by OpenAI's GPT-3.5, which enables natural language understanding and conversation generation.
 
 ## Features
 - Personalized Recommendations: Receive movie and TV show recommendations tailored to your interests and preferences.
