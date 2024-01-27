@@ -25,6 +25,7 @@ const MovieCard = ({posterPath, movieName, avgRating}) => {
       < img className='rounded-lg h-64 w-48  ' alt='movie name' 
         src={IMG_CDN_URL + posterPath }
         style={imageStyle}
+
       />  
       {/* <div className='absolute top-80 '>
         <p className=' pr-4 pt-0 bg text-lg '>{movieName}</p>
