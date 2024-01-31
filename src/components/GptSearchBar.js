@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import lang from '../utils/languageConstant'
 import { useDispatch, useSelector } from 'react-redux'
 import openai from "../utils/openai";
@@ -8,6 +8,7 @@ import {addGptMovieResult} from "../utils/gptSlice";
 const GptSearchBar = () => {
     const dispatch = useDispatch();
     const searchText = useRef(null);
+    const [loading, setLoading] = useState(false);
     const langKey = useSelector(store => store.config.lang);
 
     const searchMovieTmdb = async (movie) =>{
@@ -20,6 +21,7 @@ const GptSearchBar = () => {
     };
     
     const handleGptSearchClick = async ()=>{
+      setLoading(true);
       console.log(searchText.current.value);
       const gptQuery = 
      "Act as a movie recommendation system and suggest some movies for the query "+
@@ -42,7 +44,8 @@ const GptSearchBar = () => {
           const promiseArray = gptMovies.map(movie => searchMovieTmdb(movie));
           // [promise, promise, promise, promise, promise]//
           
-          const tmdbResults = await Promise.all(promiseArray);    
+          const tmdbResults = await Promise.all(promiseArray);   
+          setLoading(false); 
           console.log(tmdbResults);
           dispatch(addGptMovieResult({movieNames:gptMovies ,movieResults:tmdbResults}));
           
@@ -56,10 +59,24 @@ const GptSearchBar = () => {
 
         <form onSubmit={(e)=>e.preventDefault()} className='w-1/2 mb-10  grid grid-cols-12   '>
             <input type='text' ref={searchText}
-                    className='p-4 m-4 rounded-lg col-span-9' 
+                    className='p-4 m-4 rounded-lg col-span-9 text-lg' 
                     placeholder={lang[langKey].gptSearchPlaceHolder} />
             <button onClick={handleGptSearchClick}
-                 className='p-4 m-4 col-span-3 text-white bg-red-500 rounded-lg'>{lang[langKey].search}
+                 className='p-4 m-4 col-span-3 text-xl text-white bg-red-500 rounded-lg'>
+
+           {loading && (
+              <div className="fixed top-1/2 md:top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="flex items-center space-x-2">
+                      <div className="w-16 h-16 relative">
+                          <div className="w-full h-full border-t-4 border-r-4 border-b-4 border-red-500 rounded-full animate-spin absolute top-0 left-0"></div>
+                          <div className="w-full h-full border-t-4 border-r-4 border-b-4 border-transparent rounded-full animate-spin absolute top-0 left-0 animate-reverse"></div>
+                      </div>
+                      <div className="text-red-500 text-xl font-semibold">Loading...</div>
+                  </div>
+              </div>
+            )}
+
+                  {lang[langKey].search}
             </button>
         </form>
 
