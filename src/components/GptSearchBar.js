@@ -51,7 +51,7 @@ const GptSearchBar = () => {
   return (
     <div className='pt-[10%] flex flex-col justify-center items-center  bg-gray-600 '>
       <div className=' w-screen mb-5'>
-        <h1 className='text-center text-3xl font-serif'>Let AI be your Movie Guru!</h1>
+        <h1 className='text-center text-3xl font-serif'>{lang[langKey].movieGuru}</h1>
       </div>
 
         <form onSubmit={(e)=>e.preventDefault()} className='w-1/2 mb-10  grid grid-cols-12   '>
