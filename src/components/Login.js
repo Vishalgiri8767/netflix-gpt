@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import {USER_AVATAR, MOVIE_BG} from "../utils/constant";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Footer";
 
 const Login = () => {
 
@@ -120,7 +119,11 @@ const Login = () => {
       
         <p className="text-red-700 text-center text-xl font-bold mt-5">{errorMessage}</p>
 
-        <button className="p-4  my-6 font-semibold text-base rounded-md w-full bg-red-800" onClick={handleButtonClick}>{isSignInForm ? "Sign In" : "Sign Up" }</button>
+        <button className="p-4  my-6 font-semibold text-base rounded-md w-full bg-red-800" onClick={handleButtonClick} >
+          {isSignInForm ? "Sign In" : "Sign Up" }
+        {/* {  loadingBtn ? <div className="w-5 h-5 border-t m-[2px] border-gray-300 border-solid rounded-full animate-spin"></div> : 'Sign In' } */}
+
+        </button>
         <p onClick={toggleSignInForm}  className="text-gray-500 cursor-pointer">
 
 
