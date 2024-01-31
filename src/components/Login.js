@@ -128,7 +128,7 @@ const Login = () => {
 
 
           { isSignInForm ? "New to Netflix? Sign up now." : "Already registered? Sign In Now. "}</p>
-        <p className="text-xs mt-4">HIii Vercel! This page is protected by Google reCAPTCHA to ensure you're not a bot. <button>Learn More</button> </p>
+        <p className="text-xs mt-4">This page is protected by Google reCAPTCHA to ensure you're not a bot. <button>Learn More</button> </p>
 
       </form>
       
