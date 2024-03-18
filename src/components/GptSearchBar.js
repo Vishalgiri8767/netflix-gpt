@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import lang from '../utils/languageConstant'
 import { useDispatch, useSelector } from 'react-redux'
 import openai from "../utils/openai";
@@ -51,6 +51,7 @@ const GptSearchBar = () => {
           
         }
 
+      
   return (
     <div className='pt-[10%] flex flex-col justify-center items-center  bg-gray-600 '>
       <div className=' w-screen mb-5'>
